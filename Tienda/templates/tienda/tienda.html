@@ -1,0 +1,25 @@
+{% extends "PagPrincipal/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div style="float:right">
+        {% include "carro/widget.html"%}
+    </div>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-3 d-flex align-items-stretch">
+            <div class="card" style="width: 100%; margin: 10px 10px;">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.precio }}&nbsp;$</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'carro:agregar' producto.id%}" class="btn btn-success">Agregar al carro</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
